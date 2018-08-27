@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux'
 import getAllUsers from '../../redux/actionsCreators/users';
+import userLogin from '../../redux/actionsCreators/users'
 import Home from './home';
 
 const mapStateToProps = (state, ownProps) => {
@@ -12,7 +13,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = {
-  getAllUsers
+  getAllUsers,
+  userLogin
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -28,6 +28,12 @@ function usersReducer(state = INITIAL_STATE, action) {
         isLoading: false
       };
       
+    case a.USERS_LOGIN_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        apiUrl: action.payload
+      }
     default:
       return state;
   }

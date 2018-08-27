@@ -1,0 +1,17 @@
+/* Bootstrap classes*/
+
+.form-control {
+  background-color: transparent;
+  color: #f1c40f;
+}
+
+.btn-primary {
+  background-color: #f1c40f;
+  border-color: #f1c40f; 
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background-color: rgba(241, 196, 15, 0.7);
+  border-color: rgba(241, 196, 15, 0.7);
+}

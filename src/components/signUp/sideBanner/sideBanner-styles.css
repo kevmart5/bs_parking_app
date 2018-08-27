@@ -1,0 +1,11 @@
+.sideBanner__image {
+  height: 100vh;
+  background-image: url('../../../assets/images/toronto-parking-lot.jpg');
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
+
+.signUp__main-container {
+  padding-left: 0%;
+  padding-right: 0%;
+}
