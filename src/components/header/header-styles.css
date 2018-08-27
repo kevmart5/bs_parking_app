@@ -1,0 +1,46 @@
+.header__background {
+  height: 100vh;
+  width: 100%;
+  background-image: url('../../assets/images/toronto.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.header__container {
+  padding-top: 1rem;
+  height: 100vh;
+  background-color: rgba(1, 5, 12, 0.5)
+}
+
+.header__title-container {
+  padding-top: 7rem;
+}
+
+.header_principal-title {
+  color: #ffffff; 
+  margin-bottom: 1rem;
+}
+
+.title__group {
+  margin-bottom: 2rem;
+}
+
+.header__button-start {
+  background-color: transparent;
+  border: 2px solid #f1c40f;
+  width: 20%;
+  height: 2rem;
+  border-radius: 5%;
+  color: #ffffff;
+  padding: 1rem 0 2.5rem 0;
+}
+
+.header__login {
+  padding-top: 7rem;
+
+}
+
+.header__login-container {
+  height: 25rem;
+  background-color: rgba(241, 196, 15, 0.7);
+}
