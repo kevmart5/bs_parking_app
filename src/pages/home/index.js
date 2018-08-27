@@ -1,14 +1,3 @@
-import React from 'react';
-import Header from '../../components/header/';
+import HomeContainer from './HomeContainer';
 
-class Home extends React.Component {
-  render () {
-    return (
-      <React.Fragment>
-        <Header />
-      </React.Fragment>
-    )
-  }
-}
-
-export default Home;
+export default HomeContainer;
