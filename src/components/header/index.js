@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import userLogin from "../../redux/actionsCreators/login";
 import Navigation from "../navigaton/";
 import CompanyLogo from "../companyLogo/";
 import LoginForm from "../login/loginForm/";
@@ -6,9 +8,18 @@ import LoginForm from "../login/loginForm/";
 import "./header-styles.css";
 
 class Header extends React.Component {
-  
+  componentDidUpdate(prevProps) {
+    if (this.props.login !== prevProps.login) {
+      if (this.props.login.name !== undefined) {
+        alert(`Welcome ${this.props.login.name}`);
+      } else {
+        alert(`Fail login`);
+      }
+    }
+  }
+
   submit = values => {
-    console.log(values);
+    this.props.userLogin(values);
   };
 
   render() {
@@ -64,4 +75,16 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+const mapStateToProps = state => {
+  return {
+    users: state.users.users,
+    isLoading: state.users.isLoading,
+    error: state.users.error,
+    login: state.users.login
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { userLogin }
+)(Header);

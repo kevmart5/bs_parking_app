@@ -3,7 +3,8 @@ import * as a from "../../actions/types";
 const INITIAL_STATE = {
   users: [],
   isLoading: false,
-  error: ""
+  error: "",
+  login: []
 };
 
 function usersReducer(state = INITIAL_STATE, action) {
@@ -27,13 +28,15 @@ function usersReducer(state = INITIAL_STATE, action) {
         error: action.error,
         isLoading: false
       };
-      
+
     case a.USERS_LOGIN_SUCCESS:
       return {
         ...state,
-        isLoading: false,
-        apiUrl: action.payload
-      }
+        login: action.payload,
+        error: false,
+        isLoading: false
+      };
+      
     default:
       return state;
   }

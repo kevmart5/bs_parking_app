@@ -8,7 +8,7 @@ let LoginForm = props => {
       <div className="form-group">
         <label htmlFor="emailAddress">Email address</label>
         <Field
-          name="emailAddress"
+          name="email"
           component="input"
           placeholder="Enter email"
           type="text"
@@ -21,7 +21,7 @@ let LoginForm = props => {
         <label htmlFor="userPassword">
           Password
         </label>
-        <Field name="userPassword" component="input" type="password" className="form-control" placeholder="Password"/>
+        <Field name="password" component="input" type="password" className="form-control" placeholder="Password"/>
       </div>
       <button type="submit" className="btn btn-primary">Submit</button>
     </form>

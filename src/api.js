@@ -1,2 +1,2 @@
-require('dotenv').config(); 
-module.api = 'mongodb://localhost:27017/parking'
+const port = 489;
+export const api = `http://localhost:${port}/login`
