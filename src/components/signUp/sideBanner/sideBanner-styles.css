@@ -9,3 +9,8 @@
   padding-left: 0%;
   padding-right: 0%;
 }
+
+.sideBanner__background-color {
+  height: 100vh;
+  background-color: rgba(1, 5, 12, 0.5);
+}

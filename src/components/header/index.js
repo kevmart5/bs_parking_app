@@ -58,7 +58,7 @@ class Header extends React.Component {
                       <div className="col-md-12">
                         <div className="header__login">
                           <div className="header__login-container">
-                            <h3 className="text-center">Log in</h3>
+                            <h3 className="text-center">Login</h3>
                             <LoginForm onSubmit={this.submit} />
                           </div>
                         </div>

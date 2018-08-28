@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import './navigation-styles.css';
 
 function Navigation() {
@@ -7,13 +8,13 @@ function Navigation() {
       <nav className="header__navigation-principal">
         <ul className="navigation__list">
           <li className="navigation__list-item item-one">
-            <span className="navigation__list-text">Home</span>
+            <Link to={'/'} className="navigation__list-text">Home</Link>
           </li>
           <li className="navigation__list-item item-two">
-            <span className="navigation__list-text">Log in</span>
+            <Link to={'/'} className="navigation__list-text">Login</Link>
           </li>
           <li className="navigation__list-item item-three">
-            <span className="navigation__list-text">Sign up</span>
+            <Link to={'/signUp'} className="navigation__list-text">Sign up</Link>
           </li>
         </ul>
       </nav>

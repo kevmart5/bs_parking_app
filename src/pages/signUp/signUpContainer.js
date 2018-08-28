@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux'
 import getAllUsers from '../../redux/actionsCreators/users';
+import userSignUp from '../../redux/actionsCreators/signUp';
 import SignUp from './signUp';
 
 const mapStateToProps = (state, ownProps) => {
@@ -12,7 +13,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = {
-  getAllUsers
+  getAllUsers,
+  userSignUp
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

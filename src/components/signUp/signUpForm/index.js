@@ -1,30 +1,53 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 
-let ContactForm = props => {
+let SignUpForm = props => {
   const { handleSubmit } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="firstName">First Name</label>
-        <Field name="firstName" component="input" type="text" />
+      <div className="form-group">
+        <label htmlFor="firstName" className="signUp__form-label">First Name</label>
+        <div>
+          <Field 
+            name="firstName" 
+            component="input" 
+            type="text" 
+            className="form-control"
+            id="firstName" />
+        </div>
       </div>
-      <div>
-        <label htmlFor="lastName">Last Name</label>
-        <Field name="lastName" component="input" type="text" />
+      <div className="form-group">
+        <label htmlFor="lastName" className="signUp__form-label">Last Name</label>
+        <div>
+          <Field name="lastName" component="input" type="text" className="form-control"/>
+        </div>
       </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <Field name="email" component="input" type="email" />
+      <div className="form-group">
+        <label htmlFor="email" className="signUp__form-label">Email</label>
+        <div>
+          <Field name="email" component="input" type="email" className="form-control"/>
+        </div>
+        
       </div>
-      <button type="submit">Submit</button>
+      <div className="form-group">
+        <label htmlFor="password" className="signUp__form-label">Password</label>
+        <div>
+          <Field name="password" component="input" type="password" className="form-control"/>
+        </div>
+      </div>
+      <div className="form-group">
+        <label htmlFor="confirmation" className="signUp__form-label">Confirm password</label>
+        <div>
+          <Field name="confirmation" component="input" type="password" className="form-control"/>
+        </div>
+      </div>
+      <button type="submit" className="btn btn-primary">Sign up</button>
     </form>
   );
 };
 
-ContactForm = reduxForm({
-  // a unique name for the form
+SignUpForm = reduxForm({
   form: "contact"
-})(ContactForm);
+})(SignUpForm);
 
-export default ContactForm;
+export default SignUpForm;

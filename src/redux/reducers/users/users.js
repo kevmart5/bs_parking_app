@@ -4,7 +4,8 @@ const INITIAL_STATE = {
   users: [],
   isLoading: false,
   error: "",
-  login: []
+  login: [],
+  newSignUp: []
 };
 
 function usersReducer(state = INITIAL_STATE, action) {
@@ -33,6 +34,14 @@ function usersReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         login: action.payload,
+        error: false,
+        isLoading: false
+      };
+
+    case a.USERS_SIGNUP_SUCCESS:
+      return {
+        ...state,
+        newSignUp: action.payload,
         error: false,
         isLoading: false
       };

@@ -12,4 +12,12 @@
 
 .navigation__list-text {
   font-size: 1rem;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.navigation__list-text:hover {
+  color: #f1c40f;
+  text-decoration: none;
+  transition: 1s; 
 }
