@@ -21,6 +21,7 @@ class Header extends React.Component {
     if (this.props.login !== prevProps.login) {
       if (this.props.login.name !== undefined) {
         this.setState({ isLogged: true });
+        localStorage.setItem('user', JSON.stringify(this.props.login))
         localStorage.setItem('isLogged', true);
       } else {
         this.setState({ isLogged: false });

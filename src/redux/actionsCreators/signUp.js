@@ -15,7 +15,6 @@ export default function userSignUp (userParams) {
     try {
       axios.post(url, userParams)
       .then((val) => {
-        console.log(val)
         dispatch({
           type: a.USERS_SIGNUP_SUCCESS,
           payload: val.data

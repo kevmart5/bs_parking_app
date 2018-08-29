@@ -8,7 +8,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     users: state.users.users,
     isLoading: state.users.isLoading,
-    error: state.users.error
+    error: state.users.error,
+    newUser: state.users.newSignUp
   }
 }
 
