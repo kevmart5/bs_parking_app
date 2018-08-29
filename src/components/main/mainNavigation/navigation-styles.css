@@ -1,0 +1,15 @@
+.main__navigation-list {
+  color: #ffffff;
+}
+
+.main__list-element {
+  color: #ffffff;
+  text-decoration: none;
+  margin-right: 10%;
+}
+
+.main__list-element:hover {
+  color: #f1c40f;
+  text-decoration: none;
+  transition: 1s;
+}
