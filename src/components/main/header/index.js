@@ -1,6 +1,7 @@
 import React from 'react';
 import './main-header-styles.css';
 import MainNavigation from '../mainNavigation/';
+import MenuDropDown from '../mainNavigation/dropDown';
 
 class HeaderMain extends React.Component {
   render () {
@@ -10,11 +11,13 @@ class HeaderMain extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <MainNavigation />
+                <div className="main-header__menu">
+                  <MenuDropDown />
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </div> 
       </React.Fragment>
     )
   }

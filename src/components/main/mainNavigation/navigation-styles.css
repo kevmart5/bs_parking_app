@@ -13,3 +13,19 @@
   text-decoration: none;
   transition: 1s;
 }
+
+.dropDown__list-element {
+  color: #38393B;
+  text-decoration: none;
+}
+
+.dropDown__list-element:hover {
+  color: #f1c40f;
+  text-decoration: none;
+  transition: 1s;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: none;
+}

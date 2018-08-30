@@ -34,7 +34,7 @@ class MainNavigation extends React.Component {
               <Link to={'/home'} className="main__list-element">Parking Spaces</Link>
               <Link to={'/home'} className="main__list-element">Reserve</Link>
               <Link to={'/home'} className="main__list-element">Profile</Link>
-              <a onClick={this.logout} className="main__list-element">Logout</a>
+              <Link to={''} onClick={this.logout} className="main__list-element">Logout</Link>
             </ul>
           </nav>
         </React.Fragment>
