@@ -22,16 +22,11 @@ class Profile extends React.Component {
 
   async componentDidMount () {
     const currentUser = await JSON.parse(localStorage.getItem('user'));
-    this.setState({userId: currentUser.id});
-  }
-
-  /*componentDidUpdate(prevProps) {
-    if (this.props.newUser !== prevProps.newUser) {
-      this.setState({isLogged: true});
-      localStorage.setItem('isLogged', true);
-      localStorage.setItem('user', JSON.stringify(this.props.newUser));
+    if(currentUser.id !== undefined) {
+      this.setState({userId: currentUser.id});
     }
-  }*/
+    
+  }
 
   render() {  
     if(!this.state.isLogged) {

@@ -26,7 +26,9 @@ class ProfileInfo extends React.Component {
     console.log(this.props.space)
 
     if(this.props.isLoadingSpaces) {
-      return <p>Loading...</p>
+      return (
+        <div class="lds-dual-ring"></div>
+      )
     }else {
       return (
         <React.Fragment>

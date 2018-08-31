@@ -22,7 +22,9 @@ class ParkingList extends React.Component {
   render() {
 
     if (this.props.isLoading) {
-      return <p>Loading...</p>;
+    return (
+      <div class="lds-dual-ring"></div>
+    );
     } else {
       return (  
         <React.Fragment>
