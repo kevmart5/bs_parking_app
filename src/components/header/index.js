@@ -36,7 +36,7 @@ class Header extends React.Component {
 
   render() {
     if (this.state.isLogged) {
-      return <Redirect to={"/home"} />;
+      return <Redirect to={"/profile"} />;
     } else {
       return (
         <React.Fragment>

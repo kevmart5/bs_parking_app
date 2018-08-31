@@ -1,0 +1,15 @@
+.profile-content {
+  padding-top: 5rem;
+}
+
+.profile__details {
+  padding: 2rem 1.5rem 2rem 1.5rem;
+  border: 1px solid rgba(56, 57, 59, 0.4);
+}
+
+@media screen and (max-width: 575px) {
+  .profile__details {
+    padding: 2rem 1.5rem 2rem 1.5rem;
+    border: none;
+  }
+}

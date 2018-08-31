@@ -1,8 +1,11 @@
 
-import React from "react";
-import { Redirect } from "react-router";
+import React from 'react';
+import { Redirect } from 'react-router';
 
-import HeaderMain from "../../components/main/header/";
+import HeaderMain from '../../components/main/header/';
+import ProfileInfo from '../../components/profileInfo/';
+
+import './profile-styles.css';
 
 class Profile extends React.Component {
 
@@ -10,9 +13,16 @@ class Profile extends React.Component {
     super (props);
 
     this.state = {
-      isLogged: localStorage.getItem('isLogged')
+      userId: null,
+      isLogged: localStorage.getItem('isLogged'),
+      spaces: []
     }
  
+  }
+
+  async componentDidMount () {
+    const currentUser = await JSON.parse(localStorage.getItem('user'));
+    this.setState({userId: currentUser.id});
   }
 
   /*componentDidUpdate(prevProps) {
@@ -23,14 +33,20 @@ class Profile extends React.Component {
     }
   }*/
 
-  render() {
+  render() {  
     if(!this.state.isLogged) {
       return <Redirect to={'/home'} /> 
     }else {
       return (
         <React.Fragment>
           <HeaderMain />
-          <p>PEpe</p>
+          <div className="profile-content">
+            <div className="container">
+              <div className="row">
+                <ProfileInfo user={this.state.userId} getUser={this.props.getOneUser}/>
+              </div>
+            </div>
+          </div>
         </React.Fragment>
       );
     }
