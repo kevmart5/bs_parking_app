@@ -38,7 +38,7 @@ class ProfileInfo extends React.Component {
                   <h6>User information</h6>
                   <form>
                     <div className="form-group">
-                      <label htmlFor="userName">User name</label>
+                      <label htmlFor="userName">Name</label>
                       <input
                         type="text"
                         className="form-control"
@@ -49,7 +49,7 @@ class ProfileInfo extends React.Component {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="userEmail">User email</label>
+                      <label htmlFor="userEmail">Email</label>
                       <input
                         type="text"
                         className="form-control"

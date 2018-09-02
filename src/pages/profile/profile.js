@@ -22,9 +22,14 @@ class Profile extends React.Component {
 
   async componentDidMount () {
     const currentUser = await JSON.parse(localStorage.getItem('user'));
-    if(currentUser.id !== undefined) {
-      this.setState({userId: currentUser.id});
+    try {
+      if(currentUser.id !== undefined || currentUser.id !== null) {
+        this.setState({userId: currentUser.id});
+      }
+    }catch(err){
+      alert('You cant go back');
     }
+
     
   }
 
