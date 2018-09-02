@@ -61,7 +61,7 @@ class Header extends React.Component {
                           Search for free parking spaces
                         </h3>
                         <h4 className="header_principal-title">
-                          in Toronto, Canada.
+                          in Tres Rios, Cartago.
                         </h4>
                       </div>
                       <button className="header__button-start">
