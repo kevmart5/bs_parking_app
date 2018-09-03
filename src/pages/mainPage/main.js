@@ -4,6 +4,8 @@ import HeaderMain from "../../components/main/header/";
 import ParkingList from "../../components/main/parkingList/";
 import AsideNavigation from '../../components/main/asideNav/';
 
+import './main-page-styles.css';
+
 class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +25,7 @@ class Main extends React.Component {
           <div className="container-fluid">
             <div className="row">
               <ParkingList />
+              <AsideNavigation />
             </div>
           </div>
         </React.Fragment>

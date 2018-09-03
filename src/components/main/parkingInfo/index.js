@@ -4,40 +4,35 @@ import getOneUser from "../../../redux/actionsCreators/getOneUser";
 import { Card, Button, CardTitle, CardText, Row, Col } from "reactstrap";
 
 class ParkingInfo extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
-
   }
 
-  async componentDidMount () {
-    const owner = this.props.space.owner
-    if(owner !== undefined) {
+  async componentDidMount() {
+    const owner = this.props.space.owner;
+    if (owner !== undefined) {
       const result = await this.props.getOneUser(owner);
     }
   }
 
-  render () {
+  render() {
     const { space } = this.props;
     return (
       <React.Fragment>
-        <Row>
-          <Col sm="12">
-            <Card body>
-              <CardTitle>Code {space.code}</CardTitle>
-              <CardText>
-                
-                <ul>
-                  <li>Owner: {this.props.owner.name} {this.props.owner.lastName}</li>
-                  <li>Owner email: {this.props.owner.email }</li>
-                  <li>Available: {
-                      space.available ? 'Yes' : 'No'
-                    }
-                  </li>
-                </ul>
-              </CardText>
-            </Card>
-          </Col>
-        </Row>
+        <div className="col-md-6">
+          <Card body>
+            <CardTitle>Code {space.code}</CardTitle>
+            <CardText>
+              Owner: {this.props.owner.name} {this.props.owner.lastName}  
+            </CardText>
+            <CardText>
+              email: {this.props.owner.email}
+            </CardText>
+            <CardText>
+              Available: {space.available ? "Yes" : "No"}
+            </CardText>
+          </Card>
+        </div>
       </React.Fragment>
     );
   }
@@ -59,5 +54,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(ParkingInfo);
-
-

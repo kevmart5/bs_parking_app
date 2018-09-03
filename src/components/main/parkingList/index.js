@@ -18,23 +18,25 @@ class ParkingList extends React.Component {
       spaces: this.props.spaces
     });
   }
-  
+
   render() {
-
     if (this.props.isLoading) {
-    return (
-      <div class="lds-dual-ring"></div>
-    );
+      return <div className="lds-dual-ring" />;
     } else {
-      return (  
+      return (
         <React.Fragment>
-          <div className="col-md-9">
-            {
-               this.props.spaces.map((space, index )=> (
-                space.available ? (<ParkingInfo space={space} key={index}/>) : ''
-              ))
-            }
-
+          <div className="col-md-9 parking__container">
+            <h1>Availables spaces</h1>
+            <div className="row">
+              {this.props.spaces.map(
+                (space, index) =>
+                  space.available ? (
+                    <ParkingInfo space={space} key={index} />
+                  ) : (
+                    ''
+                  )
+              )}
+            </div>
           </div>
         </React.Fragment>
       );

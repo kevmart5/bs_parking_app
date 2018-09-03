@@ -1,10 +1,9 @@
-.aside__navigation {
-  height: 100vh;
-  width: 100%;
-  border-right: 1px solid black;
-  padding-top: 2rem;
+.aside__parking-container {
+  margin-top: 6.5rem;
+  border-left: 2px solid rgb(241, 196, 15);
+  padding: 0 1.5rem 0 1.5rem;
 }
 
-.aside__list-element {
-  list-style: none;
+.aside__title {
+  margin-bottom: 1rem;
 }

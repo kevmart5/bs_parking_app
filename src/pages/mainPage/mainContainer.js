@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux'
 import getAllUsers from '../../redux/actionsCreators/users';
+import gt from '../../redux/actionsCreators/getSpaceByUser';
 import userLogin from '../../redux/actionsCreators/users'
 import Main from './main';
 
