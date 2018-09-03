@@ -5,6 +5,7 @@ import userLogin from "../../redux/actionsCreators/login";
 import Navigation from "../navigaton/";
 import CompanyLogo from "../companyLogo/";
 import LoginForm from "../login/loginForm/";
+import ModalExample from '../modals/errorModal/';
 
 import "./header-styles.css";
 
@@ -31,7 +32,12 @@ class Header extends React.Component {
   }
 
   submit = values => {
-    this.props.userLogin(values);
+    try {
+      this.props.userLogin(values);
+    }catch(err) {
+      alert(err);
+    }
+    
   };
 
   render() {
@@ -77,6 +83,14 @@ class Header extends React.Component {
                             <div className="header__login-container">
                               <h3 className="text-center">Login</h3>
                               <LoginForm onSubmit={this.submit} />
+                              <div>
+                                {
+                                  this.props.error ? (
+                                    <p className="displayErrors">We're sorry, but we had a problem during the login action</p>
+                                  ) : ''
+                                }
+                                
+                              </div>
                             </div>
                           </div>
                         </div>

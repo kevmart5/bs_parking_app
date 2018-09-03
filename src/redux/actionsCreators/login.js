@@ -19,6 +19,11 @@ export default function userLogin (userParams) {
           type: a.USERS_LOGIN_SUCCESS,
           payload: val.data
         })
+      }).catch ((err) => {
+        dispatch({
+          type: a.USERS_LOGIN_FAILURE,
+          error: err
+        })
       })
     } catch (err) {
       dispatch({

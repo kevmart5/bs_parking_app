@@ -37,6 +37,12 @@ function usersReducer(state = INITIAL_STATE, action) {
         error: false,
         isLoading: false
       };
+    case a.USERS_LOGIN_FAILURE:
+      return {
+        ...state, 
+        error: action.error,
+        isLoading: false
+      }
 
     case a.USERS_SIGNUP_SUCCESS:
       return {
