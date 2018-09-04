@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import getAllSpaces from "../../../redux/actionsCreators/spaces";
+import { getAllSpaces } from "../../../redux/actionsCreators/spaces";
 import ParkingInfo from "../parkingInfo/";
 
 class ParkingList extends React.Component {
@@ -28,14 +28,19 @@ class ParkingList extends React.Component {
           <div className="col-md-9 parking__container">
             <h1>Availables spaces</h1>
             <div className="row">
-              {this.props.spaces.map(
-                (space, index) =>
-                  space.available ? (
-                    <ParkingInfo space={space} key={index} />
-                  ) : (
-                    ''
+              {
+                this.props.spaces.length === 0 ? (
+                  <p>There aren't available spaces.</p>
+                ) : (
+                  this.props.spaces.map(
+                    (space, index) =>
+                      space.available ? (
+                        <ParkingInfo space={space} key={index} />
+                      ) : (
+                        ''
+                      )
                   )
-              )}
+                )}
             </div>
           </div>
         </React.Fragment>

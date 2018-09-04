@@ -49,7 +49,7 @@ class SpaceForm extends React.Component {
             day={this.props.finalDate}/>
           </div>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="button" className="btn btn-primary" onClick={this.props.handleSubmit}>
           Save changes
         </button>
       </form>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from "react-router";
 import { connect } from "react-redux";
 import getSpaceByUser from '../../../redux/actionsCreators/getSpaceByUser';
+import { getAllSpaces, updateSpace } from '../../../redux/actionsCreators/spaces'
 import SpaceForm from '../spaceForm/';
 import './aside-styles.css';
 
@@ -18,18 +19,26 @@ class AsideNavigation extends React.Component {
     this.finalDayClick = this.finalDayClick.bind(this);
   }
 
-  submit = (values, e) => {
-    e.preventDefault();
-    console.log(values);
+  submit = () => {
+    const initDate = sessionStorage.getItem('Initial date');
+    const finalDate = sessionStorage.getItem('Final date');
+
+    const spaceData = {
+      _id: this.props.space._id,
+      code: this.props.space.code,
+      initialDate: JSON.parse(initDate),
+      finalDate: JSON.parse(finalDate),
+      available: !this.props.space.available
+    }
+    console.log(spaceData);
+    this.props.updateSpace(spaceData);
   }
 
   initialDayClick(day) {
-    console.log('initial day', day);
     this.setState({ initialDay: day });
   }
 
   finalDayClick(day) {
-    console.log('final day', day);
     this.setState({ finalDay: day });
   }
 
@@ -39,28 +48,38 @@ class AsideNavigation extends React.Component {
   }
 
   render () {
-    return (
-      <React.Fragment>  
-        <div className="col-md-3">
-          <div className="aside__parking-container">
-            <h5 className="aside__title">Parking space info</h5>
-            <div className="row">
-              <div className="col-12">
-                <label>Set free my space</label>
-                <SpaceForm 
-                  handleSubmit={this.submit} 
-                  spaceCode={this.props.space.code}
-                  initialDayClick={this.initialDayClick}
-                  finalDayClick={this.finalDayClick}
-                  initialDate={this.state.initialDay}
-                  finalDate={this.state.finalDay}/>
-              </div>
-            </div>
-
+    if(this.props.space._id === undefined){
+      return (
+        <React.Fragment>
+          <div>
+            <p>You don't have a parking space</p>
           </div>
-        </div>
-      </React.Fragment>
-    )
+        </React.Fragment>
+      )
+    }else {
+      return (
+        <React.Fragment>  
+          <div className="col-md-3">
+            <div className="aside__parking-container">
+              <h5 className="aside__title">Parking space info</h5>
+              <div className="row">
+                <div className="col-12">
+                  <label>Set free my space</label>
+                  <SpaceForm 
+                    handleSubmit={this.submit} 
+                    spaceCode={this.props.space.code}
+                    initialDayClick={this.initialDayClick}
+                    finalDayClick={this.finalDayClick}
+                    initialDate={this.state.initialDay}
+                    finalDate={this.state.finalDay}/>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+        </React.Fragment>
+      )
+    }
   }
 }
 
@@ -68,12 +87,15 @@ const mapStateToProps = state => {
   return {
     isLoading: state.oneSpace.isLoading,
     error: state.oneSpace.error,
-    space: state.oneSpace.space
+    space: state.oneSpace.space,
+    updateSpace: state.spaces.updateSpace
   };
 };
 
 const mapDispatchToProps = {
-  getSpaceByUser
+  getSpaceByUser,
+  getAllSpaces,
+  updateSpace
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AsideNavigation);

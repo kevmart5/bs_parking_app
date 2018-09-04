@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
 import getOneUser from '../../redux/actionsCreators/getOneUser';
-import getAllSpaces from '../../redux/actionsCreators/spaces'
+import { getAllSpaces } from '../../redux/actionsCreators/spaces'
 import Profile from './profile.js';
 
 const mapStateToProps = (state, ownProps) => {

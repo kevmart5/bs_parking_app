@@ -6,6 +6,11 @@ import { Card, Button, CardTitle, CardText, Row, Col } from "reactstrap";
 class ParkingInfo extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      initialDate: '',
+      finalDate: ''
+    }
   }
 
   async componentDidMount() {
@@ -13,6 +18,11 @@ class ParkingInfo extends React.Component {
     if (owner !== undefined) {
       const result = await this.props.getOneUser(owner);
     }
+
+    const initialDate = new Date(this.props.space.initialDate);
+    const finalDate = new Date(this.props.space.finalDate);
+    this.setState({initialDate: `${initialDate.getDay()}/${initialDate.getMonth()}/${initialDate.getFullYear()}`})
+    this.setState({finalDate: `${finalDate.getDay()}/${finalDate.getMonth()}/${finalDate.getFullYear()}`})
   }
 
   render() {
@@ -21,7 +31,7 @@ class ParkingInfo extends React.Component {
       <React.Fragment>
         <div className="col-md-6">
           <Card body>
-            <CardTitle>Code {space.code}</CardTitle>
+            <CardTitle>Parking space code {space.code}</CardTitle>
             <CardText>
               Owner: {this.props.owner.name} {this.props.owner.lastName}  
             </CardText>
@@ -30,6 +40,12 @@ class ParkingInfo extends React.Component {
             </CardText>
             <CardText>
               Available: {space.available ? "Yes" : "No"}
+            </CardText>
+            <CardText>
+              From (initial date): {this.state.initialDate} 
+            </CardText>
+            <CardText>
+              to (final date): {this.state.finalDate}
             </CardText>
           </Card>
         </div>
