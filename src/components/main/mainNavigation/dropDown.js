@@ -8,10 +8,16 @@ export default class MenuDropDown extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      dropdownOpen: false
+      dropdownOpen: false,
+      admin: false
     };
 
     this.logout = this.logout.bind(this);
+  }
+
+  async componentDidMount () {
+    const userAdmin = await JSON.parse(localStorage.getItem('user'));
+    this.setState({admin: userAdmin.admin});
   }
 
   toggle() {
@@ -36,9 +42,13 @@ export default class MenuDropDown extends React.Component {
           <DropdownItem>
             <Link to={'/home'} className="dropDown__list-element">Parking Spaces</Link>
           </DropdownItem>
-          <DropdownItem>
-            <Link to={'/home'} className="dropDown__list-element">Reserve</Link>
-          </DropdownItem>
+          {
+            this.state.admin ? (
+              <DropdownItem>
+                <Link to={'/reserve'} className="dropDown__list-element">Reserve</Link>
+              </DropdownItem>
+            ) : ''
+          }
           <DropdownItem>
             <Link to={'/profile'} className="dropDown__list-element">Profile</Link>
           </DropdownItem>

@@ -2,7 +2,8 @@ import React from 'react';
 import { Redirect } from "react-router";
 import { connect } from "react-redux";
 import getSpaceByUser from '../../../redux/actionsCreators/getSpaceByUser';
-import { getAllSpaces, updateSpace } from '../../../redux/actionsCreators/spaces'
+import { getAllSpaces, updateSpace } from '../../../redux/actionsCreators/spaces';
+import getOneUser from '../../../redux/actionsCreators/getOneUser';
 import SpaceForm from '../spaceForm/';
 import './aside-styles.css';
 
@@ -44,15 +45,22 @@ class AsideNavigation extends React.Component {
 
   async componentDidMount() {
     const userInfo = await JSON.parse(localStorage.getItem("user"));
-    this.props.getSpaceByUser(userInfo.id);
+    this.props.getOneUser(userInfo.id);
   }
 
   render () {
-    if(this.props.space._id === undefined){
+    console.log('user', this.props)
+    if(this.props.oneUser.space === undefined){
       return (
         <React.Fragment>
-          <div>
-            <p>You don't have a parking space</p>
+          <div className="col-md-3">
+            <div className="aside__parking-container">
+              <p>You don't have a parking space</p>
+              <p>Do you want to see availble spaces?</p>
+              <button type="button" className="btn btn-primary">
+                See spaces
+              </button>
+            </div>
           </div>
         </React.Fragment>
       )
@@ -67,7 +75,7 @@ class AsideNavigation extends React.Component {
                   <label>Set free my space</label>
                   <SpaceForm 
                     handleSubmit={this.submit} 
-                    spaceCode={this.props.space.code}
+                    spaceCode={this.props.oneUser.space.code}
                     initialDayClick={this.initialDayClick}
                     finalDayClick={this.finalDayClick}
                     initialDate={this.state.initialDay}
@@ -88,14 +96,16 @@ const mapStateToProps = state => {
     isLoading: state.oneSpace.isLoading,
     error: state.oneSpace.error,
     space: state.oneSpace.space,
-    updateSpace: state.spaces.updateSpace
+    updateSpace: state.spaces.updateSpace,
+    oneUser: state.oneUser.user
   };
 };
 
 const mapDispatchToProps = {
   getSpaceByUser,
   getAllSpaces,
-  updateSpace
+  updateSpace,
+  getOneUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AsideNavigation);

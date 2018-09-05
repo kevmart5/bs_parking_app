@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux'
-import getAllUsers from '../../redux/actionsCreators/users';
+import { getAllUsers } from '../../redux/actionsCreators/users';
 import userSignUp from '../../redux/actionsCreators/signUp';
 import SignUp from './signUp';
 

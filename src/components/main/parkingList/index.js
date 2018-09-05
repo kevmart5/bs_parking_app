@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { getAllSpaces } from "../../../redux/actionsCreators/spaces";
 import ParkingInfo from "../parkingInfo/";
 
+import "./parking-list-styles.css";
+
 class ParkingList extends React.Component {
   constructor(props) {
     super(props);
@@ -13,13 +15,14 @@ class ParkingList extends React.Component {
   }
 
   async componentDidMount() {
-    const result = await this.props.getAllSpaces();
+    const allUsers = await this.props.users;
     this.setState({
-      spaces: this.props.spaces
+      spaces: allUsers
     });
   }
 
   render() {
+    console.log("result", this.props.users);
     if (this.props.isLoading) {
       return <div className="lds-dual-ring" />;
     } else {
@@ -28,19 +31,24 @@ class ParkingList extends React.Component {
           <div className="col-md-9 parking__container">
             <h1>Availables spaces</h1>
             <div className="row">
-              {
-                this.props.spaces.length === 0 ? (
-                  <p>There aren't available spaces.</p>
-                ) : (
-                  this.props.spaces.map(
-                    (space, index) =>
-                      space.available ? (
-                        <ParkingInfo space={space} key={index} />
-                      ) : (
-                        ''
-                      )
-                  )
-                )}
+              {this.props.users.length === 0 ? (
+                <div className="col-md-12">
+                  <div className="parking__message">
+                    <p className="parking__message-error">
+                      There aren't available spaces.
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                this.props.users.map(
+                  (space, index) =>
+                    space.space.available ? (
+                      <ParkingInfo spaceInfo={space} key={index} />
+                    ) : (
+                      ""
+                    )
+                )
+              )}
             </div>
           </div>
         </React.Fragment>
@@ -53,7 +61,8 @@ const mapStateToProps = state => {
   return {
     spaces: state.spaces.spaces,
     isLoading: state.spaces.isLoading,
-    error: state.spaces.error
+    error: state.spaces.error,
+    users: state.users.users
   };
 };
 

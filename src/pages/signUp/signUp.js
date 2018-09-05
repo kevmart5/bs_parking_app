@@ -21,8 +21,10 @@ class SignUp extends React.Component {
       name: values.firstName,
       lastName: values.lastName,
       email: values.email,
-      password: values.confirmation
+      password: values.confirmation,
+      admin: false
     };
+    console.log(newUser);
     this.props.userSignUp(newUser);
   }
 
@@ -43,7 +45,7 @@ class SignUp extends React.Component {
           <div className="signUp__background">
             <div className="container-fluid">
               <div className="row">
-                <div className="col-md-5">
+                <div className="col-xs-12 col-sm-12 col-md-5 col-lg-5">
                   <div className="form__container">
                     <h2 className="form__title text-center">Sign up form</h2>
                     <SignUpForm onSubmit={this.submit} />

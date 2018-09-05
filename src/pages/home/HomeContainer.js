@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux'
-import getAllUsers from '../../redux/actionsCreators/users';
-import userLogin from '../../redux/actionsCreators/users'
+import { getAllUsers } from '../../redux/actionsCreators/users';
+import userLogin  from '../../redux/actionsCreators/login'
 import Home from './home';
 
 const mapStateToProps = (state, ownProps) => {

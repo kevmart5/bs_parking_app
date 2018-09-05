@@ -1,18 +1,18 @@
 import * as a from '../actions/types'
-const API = 'http://localhost:1585/users';
+import axios from 'axios';
 
-export default function getAllUsers () {
+const port = 5787;
+const API = `http://localhost:${port}/users`;
+
+export function getAllUsers () {
   return async dispatch => {
-    // Initiate loading state
     dispatch({
       type: a.USERS_GETALL_REQUEST
     })
 
     try {
-      // Call the API
       const response = await fetch(API)
       const result = await response.json()
-      console.log('result', result);
       dispatch({
         type: a.USERS_GETALL_SUCCESS,
         payload: result
@@ -20,6 +20,35 @@ export default function getAllUsers () {
     } catch (err) {
       dispatch({
         type: a.USERS_GETALL_FAILURE,
+        error: err
+      })
+    }
+  }
+}
+
+export function updateUserInfo (userInfo) {
+  return async dispatch => {
+    dispatch({
+      type: a.USERS_UPDATE_REQUEST
+    })
+
+    try {
+      axios.put(API, userInfo)
+      .then((val) => {
+        console.log('updated', val);
+        dispatch({
+          type: a.USERS_UPDATE_SUCCESS,
+          payload: val.data
+        })
+      }).catch(err => {
+        dispatch({
+          type: a.USERS_UPDATE_FAILURE,
+          error: err
+        })
+      })
+    } catch (err) {
+      dispatch({
+        type: a.USERS_UPDATE_FAILURE,
         error: err
       })
     }

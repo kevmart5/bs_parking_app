@@ -15,6 +15,10 @@ class Main extends React.Component {
     };
   }
 
+  async componentDidMount() {
+    this.props.getAllUsers();
+  }
+
   render() {
     if (!this.state.isLogged) {
       return <Redirect to={"/"} />;
@@ -24,7 +28,7 @@ class Main extends React.Component {
           <HeaderMain />
           <div className="container-fluid">
             <div className="row">
-              <ParkingList />
+              <ParkingList users={this.props.users}/>
               <AsideNavigation />
             </div>
           </div>

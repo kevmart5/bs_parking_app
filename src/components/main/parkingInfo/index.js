@@ -11,37 +11,35 @@ class ParkingInfo extends React.Component {
 
     this.state = {
       initialDate: '',
-      finalDate: ''
+      finalDate: '',
+      spaceOwner: {}
     }
   }
 
   async componentDidMount() {
-    const owner = this.props.space.owner;
-    if (owner !== undefined) {
-      const result = await this.props.getOneUser(owner);
-    }
-
-    const initialDate = new Date(this.props.space.initialDate);
-    const finalDate = new Date(this.props.space.finalDate);
+    const initialDate = new Date(this.props.spaceInfo.space.initialDate);
+    const finalDate = new Date(this.props.spaceInfo.space.finalDate);
+    console.log('date', initialDate.getFullYear());
     this.setState({initialDate: `${initialDate.getDay()}/${initialDate.getMonth()}/${initialDate.getFullYear()}`})
     this.setState({finalDate: `${finalDate.getDay()}/${finalDate.getMonth()}/${finalDate.getFullYear()}`})
   }
 
   render() {
-    const { space } = this.props;
+    const { spaceInfo } = this.props;
+    
     return (
       <React.Fragment>
         <div className="col-md-12">
           <Card body className="card__parking-info">
-            <CardTitle>Parking space code {space.code}</CardTitle>
+            <CardTitle>Parking space code {spaceInfo.space.code}</CardTitle>
             <CardText>
-              Owner: {this.props.owner.name} {this.props.owner.lastName}  
+              Owner: {spaceInfo.name} {spaceInfo.lastName}  
             </CardText>
             <CardText>
-              email: {this.props.owner.email}
+              email: {spaceInfo.email}
             </CardText>
             <CardText>
-              Available: {space.available ? "Yes" : "No"}
+              Available: {spaceInfo.space.available ? "Yes" : "No"}
             </CardText>
             <CardText>
               From (initial date): {this.state.initialDate} 

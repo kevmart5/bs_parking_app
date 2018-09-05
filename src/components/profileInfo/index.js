@@ -21,7 +21,7 @@ class ProfileInfo extends React.Component {
 
   render() {
     const { user } = this.state;
-    console.log(this.props);
+    console.log(this.props.space.length);
 
     if (this.props.isLoadingSpaces) {
       return <div class="lds-dual-ring" />;
@@ -31,7 +31,20 @@ class ProfileInfo extends React.Component {
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div className="profile__details">
               <h1>Personal details</h1>
-              <SpaceInfo space={this.props.space} />
+              {
+                this.props.space.length === 0 ? (
+                  <div>
+                    <p>You don't have any parking space, if you have one click the button below</p>
+                    <button className="btn btn-primary">
+                      Add parking space
+                    </button>
+                  </div>
+
+                ) : (
+                  <SpaceInfo space={this.props.space} />
+                )
+              }
+              
               <div className="row">
                 <div className="col-12">
                   <hr />

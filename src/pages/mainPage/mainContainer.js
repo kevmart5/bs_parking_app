@@ -1,8 +1,6 @@
-import React from "react";
 import { connect } from 'react-redux'
-import getAllUsers from '../../redux/actionsCreators/users';
-import gt from '../../redux/actionsCreators/getSpaceByUser';
-import userLogin from '../../redux/actionsCreators/users'
+import { getAllUsers } from '../../redux/actionsCreators/users';
+import userLogin from '../../redux/actionsCreators/login'
 import Main from './main';
 
 const mapStateToProps = (state, ownProps) => {
