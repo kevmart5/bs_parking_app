@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import getOneUser from "../../../redux/actionsCreators/getOneUser";
 import { Card, Button, CardTitle, CardText, Row, Col } from "reactstrap";
 
@@ -74,28 +75,12 @@ class ParkingInfo extends React.Component {
                   </CardText>
                 </div>
               </div>
-
-              <div className="row">
-                <div className="col-md-4">
-                  <CardText>
-                    <span className="card__info-titles">From: </span>
-                    {`${this.state.initialDate.day}-${this.state.initialDate.month}-${this.state.initialDate.year}`}
-                  </CardText>
-                </div>
-                <div className="col-md-4">
-                  <CardText>
-                    <span className="card__info-titles">to: </span> 
-                    {this.state.finalDate}
-                  </CardText>
-                </div>
-              </div>
               <CardText className="card__parking-buttons">
-                <button
-                  type="button"
-                  className="btn parking-info__button-primary"
-                >
+                <Link 
+                  to={{ pathname: '/reserve-space', state: { space: this.props.spaceInfo} }} 
+                  className="btn parking-info__button-primary">
                   Reserve
-                </button>
+                </Link>
 
                 <button
                   type="button"

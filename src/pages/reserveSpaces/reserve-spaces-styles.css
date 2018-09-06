@@ -1,0 +1,45 @@
+.reserve__space-info {
+  padding: 5rem 0 0 0; 
+}
+
+.reserve__space-details {
+  padding-left: 5%;
+  margin-top: 1.5rem;
+  border-left: 2px solid #f1c40f;
+}
+
+.reserve__space-highlight {
+  font-weight: 700;
+}
+
+.reserve__btn-confirm{
+  background-color: #f1c40f;
+  border-color: #f1c40f;
+  color: #ffffff;
+}
+
+.reserve__button-goBack {
+  background-color: #38393B;
+  border-color: #38393B;
+  color: #ffffff;
+  margin-left: 2%;
+}
+
+.reserve__button-goBack:hover {
+  background-color: rgb(56, 57, 59, 0.8);
+  border-color: #38393B;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.reserve__buttons-section {
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 577px) {
+  .reserve__buttons {
+    display: flex;
+    justify-content: center;
+  }
+}
+
