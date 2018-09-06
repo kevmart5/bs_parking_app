@@ -36,16 +36,16 @@ export default class MenuDropDown extends React.Component {
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
         <DropdownToggle className="nav-link" caret>
-          Menu
+          {this.props.user}
         </DropdownToggle>
         <DropdownMenu>
           <DropdownItem>
-            <Link to={'/home'} className="dropDown__list-element">Parking Spaces</Link>
+            <Link to={'/home'} className="dropDown__list-element">Parking spaces</Link>
           </DropdownItem>
           {
             this.state.admin ? (
               <DropdownItem>
-                <Link to={'/reserve'} className="dropDown__list-element">Reserve</Link>
+                <Link to={'/assign-spaces'} className="dropDown__list-element">Assign spaces</Link>
               </DropdownItem>
             ) : ''
           }

@@ -25,10 +25,13 @@ class AsideNavigation extends React.Component {
     const finalDate = sessionStorage.getItem('Final date');
 
     const spaceData = {
-      _id: this.props.space._id,
-      code: this.props.space.code,
-      initialDate: JSON.parse(initDate),
-      finalDate: JSON.parse(finalDate),
+      userId: {
+        _id: JSON.parse(localStorage.getItem('user')).id
+      },
+      _id: this.props.oneUser.space._id,
+      code: this.props.oneUser.space.code,
+      initialDate: initDate,
+      finalDate: finalDate,
       available: !this.props.space.available
     }
     console.log(spaceData);
@@ -49,17 +52,13 @@ class AsideNavigation extends React.Component {
   }
 
   render () {
-    console.log('user', this.props)
     if(this.props.oneUser.space === undefined){
       return (
         <React.Fragment>
           <div className="col-md-3">
             <div className="aside__parking-container">
               <p>You don't have a parking space</p>
-              <p>Do you want to see availble spaces?</p>
-              <button type="button" className="btn btn-primary">
-                See spaces
-              </button>
+              <p>Take a look at this parking spaces availables in your company</p>
             </div>
           </div>
         </React.Fragment>

@@ -18,7 +18,7 @@ class App extends Component {
           <Route exact path="/signUp" component={SignUp} />
           <Route exact path="/home" component={Main} />
           <Route exact path="/profile" component={Profile} />
-          <Route exact path="/reserve" component={Reserve} />
+          <Route exact path="/assign-spaces" component={Reserve} />
         </React.Fragment>
       </Router>
 

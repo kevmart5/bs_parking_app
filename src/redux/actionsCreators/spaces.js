@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const port = 5787;
 const api = `http://localhost:${port}/spaces`;
+const spaceUpdateUrl = `http://localhost:${port}/users/space`;
 
 export function getAllSpaces () {
   return async dispatch => {
@@ -33,7 +34,7 @@ export function updateSpace (spaceData) {
     })
 
     try {
-      axios.put(api, spaceData)
+      axios.put(spaceUpdateUrl, spaceData)
       .then((val) => {
         dispatch({
           type: a.SPACES_UPDATEONE_SUCCESS,

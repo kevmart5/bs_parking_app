@@ -15,39 +15,49 @@ class ParkingList extends React.Component {
   }
 
   async componentDidMount() {
-    const allUsers = await this.props.users;
-    this.setState({
-      spaces: allUsers
-    });
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.props.users !== prevProps.users) {
+      const userSpaces = this.props.users.filter(s => {
+        return s.space !== undefined;
+        
+      })
+      this.setState({spaces: userSpaces})
+    }
   }
 
   render() {
-    console.log("result", this.props.users);
-    if (this.props.isLoading) {
-      return <div className="lds-dual-ring" />;
+    console.log(this.props.users)
+    if (this.props.userLoading) {
+    return (
+      <div>
+        <p>loading...</p>
+      </div>
+    );
     } else {
       return (
         <React.Fragment>
           <div className="col-md-9 parking__container">
             <h1>Availables spaces</h1>
             <div className="row">
-              {this.props.users.length === 0 ? (
-                <div className="col-md-12">
-                  <div className="parking__message">
-                    <p className="parking__message-error">
-                      There aren't available spaces.
-                    </p>
+              { this.props.users.length === 0 ? (
+                  <div className="col-md-12">
+                    <div className="parking__message">
+                      <p className="parking__message-error">
+                        There aren't available spaces.
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                this.props.users.map(
-                  (space, index) =>
-                    space.space.available ? (
-                      <ParkingInfo spaceInfo={space} key={index} />
-                    ) : (
-                      ""
-                    )
-                )
+                ) : (
+                  this.state.spaces.map(
+                    (s, index) =>
+                      s.space.available ? (
+                        <ParkingInfo spaceInfo={s} key={index} />
+                      ) : (
+                        "No space"
+                      )
+                  )
               )}
             </div>
           </div>
@@ -61,6 +71,7 @@ const mapStateToProps = state => {
   return {
     spaces: state.spaces.spaces,
     isLoading: state.spaces.isLoading,
+    userLoading: state.users.isLoading,
     error: state.spaces.error,
     users: state.users.users
   };

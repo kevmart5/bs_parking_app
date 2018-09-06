@@ -21,18 +21,17 @@ class ProfileInfo extends React.Component {
 
   render() {
     const { user } = this.state;
-    console.log(this.props.space.length);
-
+    console.log('Hi props', this.props)
     if (this.props.isLoadingSpaces) {
       return <div class="lds-dual-ring" />;
     } else {
       return (
         <React.Fragment>
-          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <div className="profile__details">
               <h1>Personal details</h1>
               {
-                this.props.space.length === 0 ? (
+                this.props.user.space === undefined ? (
                   <div>
                     <p>You don't have any parking space, if you have one click the button below</p>
                     <button className="btn btn-primary">
@@ -41,7 +40,7 @@ class ProfileInfo extends React.Component {
                   </div>
 
                 ) : (
-                  <SpaceInfo space={this.props.space} />
+                  <SpaceInfo space={this.props.user.space} />
                 )
               }
               

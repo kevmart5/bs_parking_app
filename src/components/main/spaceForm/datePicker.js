@@ -13,7 +13,7 @@ export default class DateInputElement extends React.Component {
   componentDidUpdate(prevProps) {
     if(this.props.day !== prevProps.day) {
       this.setState({selectedDay: this.props.day});
-      sessionStorage.setItem(`${this.props.dateTime}`, JSON.stringify(this.props.day));
+      sessionStorage.setItem(`${this.props.dateTime}`, (this.props.day));
     }
   }
 

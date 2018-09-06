@@ -1,5 +1,6 @@
 .card__parking-info {
   margin-bottom: 3rem;
+  padding: 1rem 0 1rem 9%;
 }
 
 .parking-info__button-primary {
@@ -7,6 +8,14 @@
   border-color: #f1c40f;
   color: #ffffff;
   margin-right: 1rem;
+}
+
+.card__parking-buttons {
+  margin-top: 1.5rem;
+}
+
+.card__info-titles {
+  font-weight: 700;
 }
 
 .parking-info__button-sharable {

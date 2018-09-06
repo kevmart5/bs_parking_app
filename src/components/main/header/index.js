@@ -4,6 +4,20 @@ import MainNavigation from '../mainNavigation/';
 import MenuDropDown from '../mainNavigation/dropDown';
 
 class HeaderMain extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      userName: ''
+    }
+  }
+
+  async componentDidMount () {
+    const user = await JSON.parse(localStorage.getItem('user'));
+    this.setState({
+      userName: `${user.name} ${user.lastName}`
+    })
+  }
   render () {
     return (
       <React.Fragment>
@@ -11,8 +25,8 @@ class HeaderMain extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <div className="main-header__menu">
-                  <MenuDropDown />
+                <div className="d-flex justify-content-end main-header__menu">
+                  <MenuDropDown user={this.state.userName}/>
                 </div>
               </div>
             </div>
