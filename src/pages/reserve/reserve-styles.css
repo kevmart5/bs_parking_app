@@ -1,0 +1,49 @@
+.assign-spaces__container {
+  padding-top: 4rem;
+}
+
+.assign-space__main-title {
+  margin-bottom: 3rem;
+}
+
+.assign-space__parking-select {
+  margin-bottom: 5rem;
+}
+
+.parking-select__form-label {
+  font-weight: 700;
+}
+
+.assign-space__selection-details {
+  padding-top: 7rem;
+}
+
+.assign-space__label-highlighted {
+  font-weight: 700;
+}
+
+.assign-space__submit-button {
+  background-color: #f1c40f;
+  border-color: #f1c40f;
+  color: #ffffff;
+}
+
+.assign-space__submit {
+  margin-top: 5rem;
+}
+
+.assign-space__submit-button:hover{
+  background-color: rgb(241, 196, 15, 0.8);
+  border-color: #f1c40f;
+  color: #ffffff;
+}
+
+.assign-space__message-success {
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 577px) {
+  .assign-space__selection-details {
+    padding-top: 3rem;
+  }
+}

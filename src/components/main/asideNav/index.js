@@ -5,6 +5,7 @@ import getSpaceByUser from '../../../redux/actionsCreators/getSpaceByUser';
 import { getAllSpaces, updateSpace } from '../../../redux/actionsCreators/spaces';
 import getOneUser from '../../../redux/actionsCreators/getOneUser';
 import SpaceForm from '../spaceForm/';
+import UserReserveSpace from '../userSpaceReserve/';
 import './aside-styles.css';
 
 class AsideNavigation extends React.Component {
@@ -13,7 +14,9 @@ class AsideNavigation extends React.Component {
 
     this.state = {
       initialDay: undefined,
-      finalDay: undefined
+      finalDay: undefined,
+      reserveSpace: {},
+      currentUser: JSON.parse(localStorage.getItem('user'))
     }
 
     this.initialDayClick = this.initialDayClick.bind(this);
@@ -49,10 +52,27 @@ class AsideNavigation extends React.Component {
   async componentDidMount() {
     const userInfo = await JSON.parse(localStorage.getItem("user"));
     this.props.getOneUser(userInfo.id);
+    await this.props.getAllSpaces();
+    if(this.props.spaces !== undefined) {
+     const reserve = this.props.spaces.filter(s =>{
+        if(s.reserve !== undefined) {
+          return s.reserve.id === this.state.currentUser.id;
+        }
+      })
+      await this.setState({
+        reserveSpace: reserve
+      })
+    }
   }
 
   render () {
-    if(this.props.oneUser.space === undefined){
+    /*if(this.state.reserveSpace !== undefined){
+      return (
+        <React.Fragment>
+          <UserReserveSpace spaces={this.props.spaces}/>
+        </React.Fragment>
+      )
+    }else */if(this.props.oneUser.space === undefined) {
       return (
         <React.Fragment>
           <div className="col-md-3">
@@ -96,7 +116,10 @@ const mapStateToProps = state => {
     error: state.oneSpace.error,
     space: state.oneSpace.space,
     updateSpace: state.spaces.updateSpace,
-    oneUser: state.oneUser.user
+    oneUser: state.oneUser.user,
+    spaces: state.spaces.spaces,
+    isLoadingSpaces: state.spaces.isLoading,
+    errorSpaces: state.spaces.error,
   };
 };
 

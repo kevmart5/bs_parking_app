@@ -76,12 +76,15 @@ class ParkingInfo extends React.Component {
                 </div>
               </div>
               <CardText className="card__parking-buttons">
-                <Link 
-                  to={{ pathname: '/reserve-space', state: { space: this.props.spaceInfo} }} 
-                  className="btn parking-info__button-primary">
-                  Reserve
-                </Link>
-
+                {
+                  this.props.reserveSpace ? '' : (
+                    <Link 
+                      to={{ pathname: '/reserve-space', state: { space: this.props.spaceInfo} }} 
+                      className="btn parking-info__button-primary">
+                      Reserve
+                    </Link>
+                  )
+                }
                 <button
                   type="button"
                   className="btn parking-info__button-sharable"

@@ -1,7 +1,9 @@
 import React from "react";
+import { Redirect } from "react-router";
 import { connect } from "react-redux";
 import { getAllSpaces } from "../../../redux/actionsCreators/spaces";
 import ParkingInfo from "../parkingInfo/";
+import UserReserveSpace from '../userSpaceReserve/';
 
 import "./parking-list-styles.css";
 
@@ -10,11 +12,27 @@ class ParkingList extends React.Component {
     super(props);
 
     this.state = {
-      spaces: []
+      spaces: [],
+      reserveSpace: false,
+      currentUser: JSON.parse(localStorage.getItem('user'))
     };
   }
 
   async componentDidMount() {
+    const data = await this.props.getAllSpaces();
+    if(this.props.spaces !== undefined) {
+     const reserve = this.props.spaces.filter(s =>{
+        if(s.reserve !== undefined) {
+          return s.reserve.id === this.state.currentUser.id;
+        }
+      })
+
+      if(reserve.length !== 0) {
+        await this.setState({
+          reserveSpace: true
+        })
+      }
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -28,7 +46,6 @@ class ParkingList extends React.Component {
   }
 
   render() {
-    console.log(this.props.users)
     if (this.props.userLoading) {
     return (
       <div>
@@ -53,9 +70,9 @@ class ParkingList extends React.Component {
                   this.state.spaces.map(
                     (s, index) =>
                       s.space.available ? (
-                        <ParkingInfo spaceInfo={s} key={index} />
+                        <ParkingInfo spaceInfo={s} key={index} reserveSpace={this.state.reserveSpace}/>
                       ) : (
-                        "No space"
+                        ''
                       )
                   )
               )}

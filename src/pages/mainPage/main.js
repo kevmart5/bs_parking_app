@@ -17,6 +17,7 @@ class Main extends React.Component {
 
   async componentDidMount() {
     this.props.getAllUsers();
+    this.props.getAllSpaces();
   }
 
   render() {
@@ -28,8 +29,8 @@ class Main extends React.Component {
           <HeaderMain />
           <div className="container-fluid">
             <div className="row">
-              <ParkingList users={this.props.users}/>
-              <AsideNavigation />
+              <ParkingList users={this.props.users} />
+              <AsideNavigation spaces={this.props.spaces}/>
             </div>
           </div>
         </React.Fragment>

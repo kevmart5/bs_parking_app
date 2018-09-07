@@ -12,7 +12,8 @@ const mapStateToProps = (state, ownProps) => {
     spaces: state.spaces.spaces,
     isLoadingSpaces: state.spaces.isLoading,
     errorSpaces: state.spaces.error,
-    users: state.users.users
+    users: state.users.users,
+    updatedUser: state.users.updatedUser
   }
 }
 

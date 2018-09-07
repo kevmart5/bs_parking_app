@@ -5,7 +5,8 @@ const INITIAL_STATE = {
   isLoading: false,
   error: "",
   login: [],
-  newSignUp: []
+  newSignUp: [],
+  updatedUser: []
 };
 
 function usersReducer(state = INITIAL_STATE, action) {
@@ -51,6 +52,25 @@ function usersReducer(state = INITIAL_STATE, action) {
         error: false,
         isLoading: false
       };
+
+    case a.USERS_UPDATE_REQUEST:
+      return {
+        ...state,
+        isLoading: true
+      }
+    case a.USERS_UPDATE_SUCCESS:
+      return {
+        ...state,
+        updatedUser: action.payload,
+        error: false,
+        isLoading: false
+      }
+    case a.USERS_UPDATE_FAILURE: 
+      return {
+        ...state, 
+        error: action.error,
+        isLoading: false
+      }
       
     default:
       return state;

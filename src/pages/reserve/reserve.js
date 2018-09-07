@@ -5,6 +5,8 @@ import { Redirect } from 'react-router';
 import HeaderMain from '../../components/main/header/';
 import ParkingSpaces from '../../components/reserve/parkingSpaces/';
 
+import './reserve-styles.css';
+
 class Reserve extends React.Component {
 
   constructor(props) {
@@ -40,7 +42,9 @@ class Reserve extends React.Component {
           <HeaderMain />
           <div>
             <div className="container">
-              <ParkingSpaces spaces={this.props.spaces} users={this.props.users} updateUser={this.props.updateUserInfo}/>
+              <div className="assign-spaces__container">
+                <ParkingSpaces spaces={this.props.spaces} users={this.props.users} />
+              </div>
             </div>
           </div>
         </React.Fragment>

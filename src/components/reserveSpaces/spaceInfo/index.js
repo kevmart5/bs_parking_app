@@ -1,15 +1,29 @@
 import React from "react";
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { Link } from "react-router-dom";
+import { reserveSpace } from '../../../redux/actionsCreators/spaces';
 
 
 class SpaceDetails extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      initialDate: '',
+      finalDate: ''
+    };
 
     this.goBack = this.goBack.bind(this);
+  }
+
+  async componentDidMount () {
+    const initial = new Date(this.props.spaceInfo.space.initialDate).toISOString().split('T')[0];
+    const final = new Date(this.props.spaceInfo.space.finalDate).toISOString().split('T')[0]
+    this.setState({
+      initialDate: initial,
+      finalDate: final
+    });
   }
 
   goBack () {
@@ -17,7 +31,12 @@ class SpaceDetails extends React.Component {
   }
 
   reserve = () =>{
-    console.log('Space reserved');
+    const reserveRequest = {
+      user: JSON.parse(localStorage.getItem('user')),
+      space: this.props.spaceInfo.space
+    }
+    console.log(reserveRequest);
+    this.props.reserveSpace(reserveRequest);
   }
 
   render() {
@@ -90,7 +109,10 @@ class SpaceDetails extends React.Component {
                       <p>
                         Initial date:{" "}
                         <span className="reserve__space-highlight">
-                          {spaceInfo.space.initialDate}
+                          {
+                            
+                            this.state.initialDate
+                          }
                         </span>
                       </p>
                     </div>
@@ -98,7 +120,9 @@ class SpaceDetails extends React.Component {
                       <p>
                         Final date:{" "}
                         <span className="reserve__space-highlight">
-                          {spaceInfo.space.finalDate}
+                          {
+                            this.state.finalDate
+                          }
                         </span>
                       </p>
                     </div>
@@ -128,4 +152,16 @@ class SpaceDetails extends React.Component {
   }
 }
 
-export default SpaceDetails;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isLoading: state.spaces.isLoading,
+    error: state.spaces.error,
+    reserve: state.spaces.reserveSpace,
+  }
+}
+
+const mapDispatchToProps = {
+  reserveSpace
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SpaceDetails);
