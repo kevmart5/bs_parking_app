@@ -9,6 +9,7 @@ import Main from './pages/mainPage/';
 import Profile from './pages/profile/';
 import Reserve from './pages/reserve/';
 import ReserveSpaces from './pages/reserveSpaces/';
+import Login from './pages/loginPage/';
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/assign-spaces" component={Reserve} />
           <Route exact path="/reserve-space" component={ReserveSpaces}/>
+          <Route exact path='/login-page' component={Login} />
         </React.Fragment>
       </Router>
 

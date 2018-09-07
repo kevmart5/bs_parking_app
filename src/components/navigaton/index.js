@@ -11,7 +11,7 @@ function Navigation() {
             <Link to={'/'} className="navigation__list-text">Home</Link>
           </li>
           <li className="navigation__list-item item-two">
-            <Link to={'/'} className="navigation__list-text">Login</Link>
+            <Link to={'/login-page'} className="navigation__list-text">Login</Link>
           </li>
           <li className="navigation__list-item item-three">
             <Link to={'/signUp'} className="navigation__list-text">Sign up</Link>
