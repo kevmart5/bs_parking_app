@@ -1,43 +1,68 @@
 import React from "react";
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
+import { connect } from "react-redux";
+import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
-import { reserveSpace } from '../../../redux/actionsCreators/spaces';
-
+import { Alert } from "reactstrap";
+import { reserveSpace } from "../../../redux/actionsCreators/spaces";
 
 class SpaceDetails extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      initialDate: '',
-      finalDate: ''
+      initialDate: "",
+      finalDate: "",
+      successAction: false,
+      errorAction: false
     };
 
     this.goBack = this.goBack.bind(this);
   }
 
-  async componentDidMount () {
-    const initial = new Date(this.props.spaceInfo.space.initialDate).toISOString().split('T')[0];
-    const final = new Date(this.props.spaceInfo.space.finalDate).toISOString().split('T')[0]
+  async componentDidMount() {
+    const initial = new Date(this.props.spaceInfo.space.initialDate)
+      .toISOString()
+      .split("T")[0];
+    const final = new Date(this.props.spaceInfo.space.finalDate)
+      .toISOString()
+      .split("T")[0];
     this.setState({
       initialDate: initial,
-      finalDate: final
+      finalDate: final,
+      successAction: false,
+      errorAction: false
     });
   }
 
-  goBack () {
-    return <Redirect to={'/home'} />
+  async componentDidUpdate(prevProps) {
+    if(this.props.reserve !== prevProps.reserve){
+      if(this.props.reserve._id !== undefined) {
+        await this.setState({
+          successAction: true,
+          errorAction: false
+        })
+      }else{
+        await this.setState({
+          successAction: false,
+          errorAction: true
+        })
+      }
+    }
   }
 
-  reserve = () =>{
+
+  goBack() {
+    return <Redirect to={"/home"} />;
+  }
+
+  reserve = () => {
     const reserveRequest = {
-      user: JSON.parse(localStorage.getItem('user')),
+      user: JSON.parse(localStorage.getItem("user")),
       space: this.props.spaceInfo.space
-    }
+    };
     console.log(reserveRequest);
     this.props.reserveSpace(reserveRequest);
-  }
+  };
 
   render() {
     const { spaceInfo } = this.props;
@@ -109,10 +134,7 @@ class SpaceDetails extends React.Component {
                       <p>
                         Initial date:{" "}
                         <span className="reserve__space-highlight">
-                          {
-                            
-                            this.state.initialDate
-                          }
+                          {this.state.initialDate}
                         </span>
                       </p>
                     </div>
@@ -120,9 +142,7 @@ class SpaceDetails extends React.Component {
                       <p>
                         Final date:{" "}
                         <span className="reserve__space-highlight">
-                          {
-                            this.state.finalDate
-                          }
+                          {this.state.finalDate}
                         </span>
                       </p>
                     </div>
@@ -133,10 +153,20 @@ class SpaceDetails extends React.Component {
                   <div className="row">
                     <div className="col-md-12">
                       <div className="d-flex justify-content-end reserve__buttons">
-                        <button className="btn reserve__btn-confirm" onClick={this.reserve}>
-                          Reserve this space
-                        </button>
-                        <Link className="btn reserve__button-goBack" to={'/home'}>
+                      {
+                        !this.state.successAction ? (
+                          <button
+                            className="btn reserve__btn-confirm"
+                            onClick={this.reserve}
+                          >
+                            Reserve this space
+                          </button>
+                        ) : ''
+                      }
+                        <Link
+                          className="btn reserve__button-goBack"
+                          to={"/home"}
+                        >
                           Go back
                         </Link>
                       </div>
@@ -144,6 +174,39 @@ class SpaceDetails extends React.Component {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-12">
+              {this.state.successAction ? (
+                <div className="row">
+                  <div className="col-md-12">
+                    <Alert
+                      color="success"
+                      className="assign-space__message-success"
+                    >
+                      Reservation done correctly!
+                    </Alert>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
+
+              {this.state.errorAction ? (
+                <div className="row">
+                  <div className="col-md-12">
+                    <Alert
+                      color="danger"
+                      className="assign-space__message-success"
+                    >
+                      Couldn't create the reservation of this space!
+                    </Alert>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>
@@ -156,12 +219,15 @@ const mapStateToProps = (state, ownProps) => {
   return {
     isLoading: state.spaces.isLoading,
     error: state.spaces.error,
-    reserve: state.spaces.reserveSpace,
-  }
-}
+    reserve: state.spaces.reserveSpace
+  };
+};
 
 const mapDispatchToProps = {
   reserveSpace
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SpaceDetails);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SpaceDetails);

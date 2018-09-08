@@ -80,3 +80,25 @@ export function reserveSpace (reserveRequest) {
     }
   }
 }
+
+export function getReserveSpace (userId) {
+  return async dispatch => {
+    dispatch({
+      type: a.SPACES_RERSERVE_SPACE_USER_REQUEST
+    })
+
+    try {
+      const response = await fetch(`${reserveSpaceUrl}/${userId}`)
+      const result = await response.json()
+      dispatch({
+        type: a.SPACES_RERSERVE_SPACE_USER_SUCCESS,
+        payload: result
+      })
+    } catch (err) {
+      dispatch({
+        type: a.SPACES_RERSERVE_SPACE_USER_FAILURE,
+        error: err
+      })
+    }
+  }
+}

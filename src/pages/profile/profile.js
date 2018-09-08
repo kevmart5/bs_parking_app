@@ -2,9 +2,9 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import GoogleMapReact from 'google-map-react';
-
 import HeaderMain from '../../components/main/header/';
 import ProfileInfo from '../../components/profileInfo/';
+import ReserveSpace from '../../components/profile/reserveSpace/';
 
 import './profile-styles.css';
 
@@ -53,22 +53,7 @@ class Profile extends React.Component {
                 <ProfileInfo user={this.props.owner} getUser={this.props.getOneUser}/>
                 <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                   <div className="profile__map-location">
-                    <h6>Parking location</h6>
-
-                    <div className="profile__map">
-                      <GoogleMapReact
-                        defaultCenter={this.state.center}
-                        defaultZoom={this.state.zoom}
-                      >
-
-                        <AnyReactComponent
-                          lat={59.955413}
-                          lng={30.337844}
-                          text={'Kreyser Avrora'}
-                        />
-                      </GoogleMapReact>
-                    </div>
-
+                    <ReserveSpace />
                   </div>
                 </div>
               </div>

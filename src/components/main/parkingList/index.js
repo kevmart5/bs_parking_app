@@ -56,7 +56,7 @@ class ParkingList extends React.Component {
       return (
         <React.Fragment>
           <div className="col-md-9 parking__container">
-            <h1>Availables spaces</h1>
+            <h1>Available spaces</h1>
             <div className="row">
               { this.props.users.length === 0 ? (
                   <div className="col-md-12">
