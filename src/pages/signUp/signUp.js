@@ -45,14 +45,11 @@ class SignUp extends React.Component {
           <div className="signUp__background">
             <div className="container-fluid">
               <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                   <div className="form__container">
                     <h2 className="form__title text-center">Sign up form</h2>
                     <SignUpForm onSubmit={this.submit} />
                   </div>
-                </div>
-                <div className="col-md-7">
-                  <SideBanner />
                 </div>
               </div>
             </div>

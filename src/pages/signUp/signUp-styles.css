@@ -1,16 +1,14 @@
 .signUp__background {
   /*background-color: rgba(1, 5, 12, 0.7);*/
   height: 100vh;
+  background-image: url('../../assets/images/signUp.png');
+  background-size: cover;
 }
 
 .signUp__image-banner {
-  max-width: 100vw;
-  min-width: 100vw;
-  height: 50vh;
-  background-image: url('../../assets/images/img1.jpg');
-  background-repeat: no-repeat;
-  background-size: cover; 
-  background-position:center;
+  width: 100%;
+  height: 100vh;
+  background-color: #38393B;
 }
 
 .form__container {
@@ -23,4 +21,15 @@
 
 .signUp__form-label {
   color: rgb(1, 5, 12);
+}
+
+@media screen and (max-width: 577px) {
+  .signUp__background {
+    height: 100vh;
+    background-image: none;
+  }
+
+  .form__container {
+    padding: 6rem 0 0 0;
+  }
 }

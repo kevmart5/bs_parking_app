@@ -1,0 +1,12 @@
+.company-logo__title{
+  color: #ffffff;
+}
+
+
+
+@media screen and (max-width: 577px){
+  .header__company-logo {
+    display: none;
+  }
+}
+

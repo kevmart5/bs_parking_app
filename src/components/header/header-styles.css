@@ -70,3 +70,19 @@
   background-color: rgba(241, 196, 15, 0.7);
   border-color: rgba(241, 196, 15, 0.7);
 }
+
+@media screen and (max-width: 577px){
+  .header__title-container {
+    padding-top: 0;
+  }
+
+  .header__button-start {
+    background-color: transparent;
+    border: 2px solid #f1c40f;
+    width: 100%;
+    height: 2rem;
+    border-radius: 5%;
+    color: #ffffff;
+    padding: 1rem 0 2.5rem 0;
+  }
+}
