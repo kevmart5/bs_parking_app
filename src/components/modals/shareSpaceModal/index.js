@@ -1,10 +1,12 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { FacebookShareButton } from 'react-share';
-import { FacebookIcon } from 'react-share';
+import { FacebookShareButton, EmailShareButton } from 'react-share';
+import { FacebookIcon, EmailIcon } from 'react-share';
 import { FacebookShareCount } from 'react-share';
+import './share-modal-styles.css';
 
 const shareUrl = 'https://www.facebook.com/';
+const emailUrl = 'https://mail.google.com/mail/'
 
 class ShareModal extends React.Component {
   constructor(props) {
@@ -12,28 +14,44 @@ class ShareModal extends React.Component {
 
     this.state = {
       title: '',
-      spaceDetails: {}
+      spaceDetails: {},
+      subjectEmail: 'Parking space available in Konrad Group',
+      messagebody: `Hey, there is one parking space in Konrad with the code ${this.props.space.space.code}. You may want take a look in the app`
     }
   }
-  
+
   render() {
     return (
       <React.Fragment>
         <Modal isOpen={this.props.modal}>
           <ModalHeader>Share parking space information</ModalHeader>
           <ModalBody>
-            You can share this parking information in facebook to anyone in Konrad group you want it to see it.
+            You can share this parking information in facebook to anyone in Konrad group.
             Click in the icon below:
-            <FacebookShareButton
-              url={shareUrl}
-              quote={
-                `Hey, there is one parking space in Konrad with the code ${this.props.space.space.code}. You may want take a look in the app`
-              }
-              className="Demo__some-network__share-button">
-              <FacebookIcon
-                size={42}
-                round />
-            </FacebookShareButton>
+
+            <div className="row">
+              <div className="col-md-12">
+                <div className="d-flex justify-content-center share-modal__share-button">
+                  <FacebookShareButton
+                    url={shareUrl}
+                    quote={this.state.messagebody}>
+                    <FacebookIcon
+                      size={52}
+                      round />
+                  </FacebookShareButton>
+                  <EmailShareButton
+                    subject={this.state.subjectEmail}
+                    body={this.state.messagebody}>
+                    <EmailIcon
+                      size={52}
+                      round />
+                  </EmailShareButton>
+                </div>
+              </div>
+            </div>
+
+
+
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.props.onClose}>Close</Button>
