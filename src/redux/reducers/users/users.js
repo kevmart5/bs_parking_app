@@ -6,7 +6,8 @@ const INITIAL_STATE = {
   error: "",
   login: [],
   newSignUp: [],
-  updatedUser: []
+  updatedUser: [],
+  retakeSpace: []
 };
 
 function usersReducer(state = INITIAL_STATE, action) {
@@ -66,6 +67,25 @@ function usersReducer(state = INITIAL_STATE, action) {
         isLoading: false
       }
     case a.USERS_UPDATE_FAILURE: 
+      return {
+        ...state, 
+        error: action.error,
+        isLoading: false
+      }
+
+    case a.USERS_RETAKESPACE_REQUEST: 
+      return {
+        ...state,
+        isLoading: true
+      }
+    case a.USERS_RETAKESPACE_SUCCESS:
+      return {
+        ...state,
+        retakeSpace: action.payload,
+        error: false,
+        isLoading: false
+      }
+    case a.USERS_RETAKESPACE_FAILURE:
       return {
         ...state, 
         error: action.error,

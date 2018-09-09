@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import getSpaceByUser from "../../redux/actionsCreators/getSpaceByUser";
 import { getReserveSpace } from "../../redux/actionsCreators/spaces";
+import { retakeParkingSpace } from '../../redux/actionsCreators/users';
 import SpaceInfo from "../profile/spaceInfo/";
-import ReserveSpace from "../../components/profile/reserveSpace/";
 import { stat } from "fs";
 
 class ProfileInfo extends React.Component {
@@ -24,8 +24,22 @@ class ProfileInfo extends React.Component {
     console.log("Reserve space", this.props.reserveSpace);
   }
 
+  retakeSpace = () => {
+    const userId = {
+      id: JSON.parse(localStorage.getItem("user")).id
+    };
+    this.props.retakeParkingSpace(userId);
+  }
+
+  componentDidUpdate (prevProps) {
+    if(this.props.retakeSpace !== prevProps.retakeSpace) {
+      window.location.reload();
+    }
+  }
+
   render() {
     const { user } = this.state;
+    console.log('Fuk', this.props.user.space);
     if (this.props.isLoadingSpaces) {
       return <div class="lds-dual-ring" />;
     } else {
@@ -47,6 +61,23 @@ class ProfileInfo extends React.Component {
               ) : (
                 <SpaceInfo space={this.props.user.space} />
               )}
+
+              {
+                this.props.user.space === undefined ? (
+                  ''
+                ) : (
+
+                  this.props.user.space.available ? (
+                    <div className="row">
+                      <div className="col-12">
+                        <button className="btn btn-primary" onClick={this.retakeSpace}>
+                          Retake my space
+                        </button>
+                      </div>
+                    </div>
+                  ) : ('')
+                )
+              }
               <div className="row">
                 <div className="col-12">
                   <hr />
@@ -90,13 +121,15 @@ const mapStateToProps = (state, ownProps) => {
     isLoading: state.oneSpace.isLoading,
     error: state.oneSpace.error,
     space: state.oneSpace.space,
-    reserveSpace: state.spaces.userSpaceReserve
+    reserveSpace: state.spaces.userSpaceReserve,
+    retakeSpace: state.users.retakeSpace
   };
 };
 
 const mapDispatchToProps = {
   getSpaceByUser,
-  getReserveSpace
+  getReserveSpace,
+  retakeParkingSpace
 };
 
 export default connect(
