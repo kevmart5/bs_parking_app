@@ -29,7 +29,9 @@ export default class MenuDropDown extends React.Component {
   logout = () => {
     localStorage.removeItem('isLogged');
     localStorage.removeItem('user');
-    this.setState({redirect: true});
+    sessionStorage.clear();
+    window.location.reload();
+    //this.setState({redirect: true});
   }
 
   render() {
@@ -54,7 +56,7 @@ export default class MenuDropDown extends React.Component {
           </DropdownItem>
           <DropdownItem divider />
           <DropdownItem>
-            <Link to={''} onClick={this.logout} className="dropDown__list-element">Log out</Link>
+            <Link to={'/'} onClick={this.logout} className="dropDown__list-element">Log out</Link>
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>

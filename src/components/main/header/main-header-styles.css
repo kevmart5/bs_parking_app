@@ -3,9 +3,19 @@
   padding: 0.5rem 0 0.5rem 0;
 }
 
+.main-header__logo {
+  color: #ffffff;
+  font-weight: 700;
+  margin-top: 0.5rem; 
+}
+
 @media screen and (max-width: 575px) {
   .main-header__menu {
     float: left;
+  }
+
+  .main-header__logo {
+    display: none;
   }
 }
 

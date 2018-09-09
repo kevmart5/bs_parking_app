@@ -3,6 +3,7 @@ import { Redirect } from "react-router";
 import HeaderMain from "../../components/main/header/";
 import ParkingList from "../../components/main/parkingList/";
 import AsideNavigation from '../../components/main/asideNav/';
+import Footer from '../../components/footer/';
 
 import './main-page-styles.css';
 
@@ -33,6 +34,7 @@ class Main extends React.Component {
               <AsideNavigation spaces={this.props.spaces}/>
             </div>
           </div>
+          <Footer />
         </React.Fragment>
       );
     }

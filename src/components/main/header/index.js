@@ -24,7 +24,12 @@ class HeaderMain extends React.Component {
         <div className="main-header__background">
           <div className="container">
             <div className="row">
-              <div className="col-md-12">
+              <div className="col-md-2">
+                <div className="main-header__logo">
+                  <p>Konrad parking</p>
+                </div>
+              </div>
+              <div className="col-md-10">
                 <div className="d-flex justify-content-end main-header__menu">
                   <MenuDropDown user={this.state.userName}/>
                 </div>
