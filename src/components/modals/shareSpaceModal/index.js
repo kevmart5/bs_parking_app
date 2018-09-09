@@ -40,6 +40,7 @@ class ShareModal extends React.Component {
                       round />
                   </FacebookShareButton>
                   <EmailShareButton
+                    url={''}
                     subject={this.state.subjectEmail}
                     body={this.state.messagebody}>
                     <EmailIcon
@@ -49,9 +50,6 @@ class ShareModal extends React.Component {
                 </div>
               </div>
             </div>
-
-
-
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.props.onClose}>Close</Button>

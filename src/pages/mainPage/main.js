@@ -21,6 +21,12 @@ class Main extends React.Component {
     this.props.getAllSpaces();
   }
 
+  componentDidUpdate(prevProps) {
+    if(this.props.reload !== prevProps.reload){
+      window.location.reload();
+    }
+  }
+
   render() {
     if (!this.state.isLogged) {
       return <Redirect to={"/"} />;

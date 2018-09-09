@@ -11,7 +11,8 @@ const mapStateToProps = (state, ownProps) => {
     error: state.users.error,
     spaces: state.spaces.spaces,
     spacesError: state.spaces.error,
-    spacesLoading: state.spaces.isLoading
+    spacesLoading: state.spaces.isLoading,
+    reload: state.spaces.reloadPage
   }
 }
 

@@ -49,9 +49,19 @@ class SpaceForm extends React.Component {
             day={this.props.finalDate}/>
           </div>
         </div>
-        <button type="button" className="btn btn-primary" onClick={this.props.handleSubmit}>
-          Save changes
-        </button>
+        {
+          this.props.isSetFree ? (
+            <p>You already set free your parking space</p>
+          ) : (
+            <button 
+              type="button" 
+              className="btn btn-primary" 
+              onClick={this.props.handleSubmit}>
+              Save changes
+            </button>
+          )
+        }
+
       </form>
     );
   }

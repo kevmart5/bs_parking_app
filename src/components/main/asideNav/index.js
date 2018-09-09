@@ -64,15 +64,9 @@ class AsideNavigation extends React.Component {
       })
     }
   }
-
+  
   render () {
-    /*if(this.state.reserveSpace !== undefined){
-      return (
-        <React.Fragment>
-          <UserReserveSpace spaces={this.props.spaces}/>
-        </React.Fragment>
-      )
-    }else */if(this.props.oneUser.space === undefined) {
+    if(this.props.oneUser.space === undefined) {
       return (
         <React.Fragment>
           <div className="col-md-3">
@@ -98,7 +92,8 @@ class AsideNavigation extends React.Component {
                     initialDayClick={this.initialDayClick}
                     finalDayClick={this.finalDayClick}
                     initialDate={this.state.initialDay}
-                    finalDate={this.state.finalDay}/>
+                    finalDate={this.state.finalDay}
+                    isSetFree={this.props.reload}/>
                 </div>
               </div>
   
@@ -120,6 +115,7 @@ const mapStateToProps = state => {
     spaces: state.spaces.spaces,
     isLoadingSpaces: state.spaces.isLoading,
     errorSpaces: state.spaces.error,
+    reload: state.spaces.reloadPage
   };
 };
 
