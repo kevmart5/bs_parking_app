@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import getOneUser from "../../../redux/actionsCreators/getOneUser";
 import { Card, Button, CardTitle, CardText, Row, Col } from "reactstrap";
+import ShareModal from '../../modals/shareSpaceModal/';
 
 import "./parking-info-styles.css";
 
@@ -13,8 +14,25 @@ class ParkingInfo extends React.Component {
     this.state = {
       initialDate: [],
       finalDate: [],
-      spaceOwner: {}
+      spaceOwner: {},
+      isOpen: false,
+      sharableSpaceInfo: {}
     };
+
+    this.openShareModal = this.openShareModal.bind(this);
+    this.onCloseModal = this.onCloseModal.bind(this);
+  }
+
+  openShareModal() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+
+  onCloseModal () {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
   }
 
   async componentDidMount() {
@@ -88,12 +106,14 @@ class ParkingInfo extends React.Component {
                 <button
                   type="button"
                   className="btn parking-info__button-sharable"
+                  onClick={this.openShareModal}
                 >
                   Share
                 </button>
               </CardText>
             </Card>
           </div>
+          <ShareModal modal={this.state.isOpen} onClose={this.onCloseModal} space={this.props.spaceInfo}/>
         </React.Fragment>
       );
     }
