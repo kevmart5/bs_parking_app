@@ -18,6 +18,24 @@
   font-weight: 700;
 }
 
+.btn-primary:disabled {
+  color: #fff;
+  background-color: #f1c40f;
+  border-color: #f1c40f;
+}
+
+.btn__release-space {
+  color: #fff;
+  background-color: #38393B;
+  border-color: #38393B;
+}
+
+.btn__release-space:hover {
+  color: #fff;
+  background-color: rgb(56, 57, 59, 0.7);
+  border-color: rgb(56, 57, 59, 0.6);
+}
+
 
 @media screen and (max-width: 575px) {
   .profile__details {

@@ -5,6 +5,7 @@ const port = 5787;
 const api = `http://localhost:${port}/spaces`;
 const spaceUpdateUrl = `http://localhost:${port}/users/space`;
 const reserveSpaceUrl = `http://localhost:${port}/spaces/reserve`;
+const releaseSpaceUrl = `http://localhost:${port}/spaces/release-space`
 
 export function getAllSpaces () {
   return async dispatch => {
@@ -97,6 +98,34 @@ export function getReserveSpace (userId) {
     } catch (err) {
       dispatch({
         type: a.SPACES_RERSERVE_SPACE_USER_FAILURE,
+        error: err
+      })
+    }
+  }
+}
+
+export function releaseParkingSpace (spaceCode) {
+  return async dispatch => {
+    dispatch({
+      type: a.SPACES_RELEASE_REQUEST
+    })
+
+    try {
+      axios.put(releaseSpaceUrl, spaceCode)
+      .then((val) => {
+        dispatch({
+          type: a.SPACES_RELEASE_SUCCESS,
+          payload: val.data
+        })
+      }).catch(err => {
+        dispatch({
+          type: a.SPACES_RELEASE_FAILURE,
+          error: err
+        })
+      })
+    } catch (err) {
+      dispatch({
+        type: a.SPACES_RELEASE_FAILURE,
         error: err
       })
     }

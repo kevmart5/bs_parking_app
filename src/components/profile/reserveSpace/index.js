@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getReserveSpace } from "../../../redux/actionsCreators/spaces";
+import { Alert } from "reactstrap";
+import { getReserveSpace, releaseParkingSpace } from "../../../redux/actionsCreators/spaces";
 
 class ReserveSpace extends React.Component {
   constructor(props) {
@@ -8,7 +9,9 @@ class ReserveSpace extends React.Component {
 
     this.state = {
       user: {},
-      spaces: {}
+      spaces: {},
+      actionSuccess: false,
+      actionError: false
     };
   }
 
@@ -17,9 +20,34 @@ class ReserveSpace extends React.Component {
     await this.props.getReserveSpace(userId);
   }
 
-  render() {
-    console.log("props reserve", this.props.reserveSpace);
+  async componentDidUpdate (prevProps) {
+    if(this.props.releaseSpace !== prevProps.releaseSpace){
+      if(this.props.releaseSpace._id !== undefined){
+       await this.setState({
+          actionSuccess: true,
+          actionError: false
+        })
+      }else{
+        await this.setState({
+          actionSuccess: false,
+          actionError: true
+        })
+      }
+    }
+  }
 
+  releaseSpace = () => {
+    const spaceCode = {
+      code: this.props.reserveSpace.code
+    }
+    this.props.releaseParkingSpace(spaceCode);
+    setTimeout(() => {
+      window.location.reload();
+    }, 5000);
+  }
+
+  render() {
+    console.log(this.props);
     if (
       this.props.reserveSpace === undefined ||
       this.props.reserveSpace.length === 0
@@ -28,7 +56,7 @@ class ReserveSpace extends React.Component {
     } else {
       return (
         <React.Fragment>
-          <div className="reserved-space__container ">
+          <div className="reserved-space__container">
             <div className="row">
               <div className="col-12">
                 <h6>Parking space reserved</h6>
@@ -73,6 +101,56 @@ class ReserveSpace extends React.Component {
                 </div>
               </div>
             </div>
+            <div className="row">
+              <div className="col-md-12">
+                {
+                  !this.state.actionSuccess ? (
+                    <div className="reserved-space__button-container">
+                      <button 
+                        className="btn btn-primary btn__release-space"
+                        onClick={this.releaseSpace}>
+                        Release this parking space
+                      </button>
+                    </div>
+                  ): ('')
+                }
+              </div>            
+            </div>
+
+            <div className="row">
+              <div className="col-md-12">
+                {this.state.actionSuccess ? (
+                  <div className="row">
+                    <div className="col-md-12">
+                      <Alert
+                        color="success"
+                        className="assign-space__message-success"
+                      >
+                        The parking space was release correctly!
+                      </Alert>
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>  
+              <div className="col-md-12">
+                {this.state.errorAction ? (
+                  <div className="row">
+                    <div className="col-md-12">
+                      <Alert
+                        color="danger"
+                        className="assign-space__message-success"
+                      >
+                        An Error ocurred with this action.
+                      </Alert>
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>           
+            </div>
           </div>
         </React.Fragment>
       );
@@ -84,12 +162,14 @@ const mapStateToProps = state => {
   return {
     isLoading: state.spaces.isLoading,
     error: state.spaces.error,
-    reserveSpace: state.spaces.userSpaceReserve
+    reserveSpace: state.spaces.userSpaceReserve,
+    releaseSpace: state.spaces.releaseSpace
   };
 };
 
 const mapDispatchToProps = {
-  getReserveSpace
+  getReserveSpace,
+  releaseParkingSpace
 };
 
 export default connect(

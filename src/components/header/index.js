@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import userLogin from "../../redux/actionsCreators/login";
 import Navigation from "../navigaton/";
 import CompanyLogo from "../companyLogo/";
@@ -70,9 +71,9 @@ class Header extends React.Component {
                           in Tres Rios, Cartago.
                         </h4>
                       </div>
-                      <button className="header__button-start">
+                      <Link to={'/signUp'} className="header__button-start">
                         Start here
-                      </button>
+                      </Link>
                     </div>
                   </div>
                   <div className="col-md-5">

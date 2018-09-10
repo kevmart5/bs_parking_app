@@ -23,7 +23,9 @@ class Main extends React.Component {
 
   componentDidUpdate(prevProps) {
     if(this.props.reload !== prevProps.reload){
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
     }
   }
 

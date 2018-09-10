@@ -7,7 +7,8 @@ const INITIAL_STATE = {
   error: "",
   reserveSpace: [],
   userSpaceReserve: [],
-  reloadPage: false
+  reloadPage: false,
+  releaseSpace: []
 };
 
 function spacesReducer(state = INITIAL_STATE, action) {
@@ -85,6 +86,24 @@ function spacesReducer(state = INITIAL_STATE, action) {
         error: action.error,
         isLoading: false
       }  
+
+    case a.SPACES_RELEASE_REQUEST: 
+      return {
+        ...state,
+        isLoading: true
+      }
+    case a.SPACES_RELEASE_SUCCESS: 
+      return {
+        ...state,
+        releaseSpace: action.payload,
+        isLoading: false
+      }
+    case a.SPACES_RELEASE_FAILURE: 
+      return {
+        ...state,
+        error: action.error,
+        isLoading: false
+      } 
       
     default:
       return state;

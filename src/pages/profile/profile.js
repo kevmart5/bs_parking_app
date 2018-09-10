@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { Redirect } from 'react-router';
-import GoogleMapReact from 'google-map-react';
 import HeaderMain from '../../components/main/header/';
 import ProfileInfo from '../../components/profileInfo/';
 import ReserveSpace from '../../components/profile/reserveSpace/';
