@@ -2,7 +2,13 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 
 let LoginForm = props => {
-  const { handleSubmit } = props;
+  console.log('login props', props);
+  const { handleSubmit,
+    doSubmit,
+    pristine,
+    reset,
+    submitting,
+    meta } = props;
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
@@ -23,7 +29,10 @@ let LoginForm = props => {
         </label>
         <Field name="password" component="input" type="password" className="form-control" placeholder="Password"/>
       </div>
-      <button type="submit" className="btn btn-primary">Submit</button>
+      <button 
+        type="submit" 
+        className="btn btn-primary"
+        disabled={pristine || submitting}>Submit</button>
     </form>
   );
 };

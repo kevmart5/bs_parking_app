@@ -15,19 +15,25 @@ class Header extends React.Component {
     super(props);
 
     this.state = {
-      isLogged: false
+      isLogged: false,
+      loginFail: false
     };
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.login !== prevProps.login) {
       if (this.props.login.name !== undefined) {
-        this.setState({ isLogged: true });
+        this.setState({ 
+          isLogged: true ,
+          loginFail: false
+        });
         localStorage.setItem('user', JSON.stringify(this.props.login))
         localStorage.setItem('isLogged', true);
       } else {
-        this.setState({ isLogged: false });
-        alert(`Fail login`);
+        this.setState({ 
+          isLogged: false,
+          loginFail: true   
+        });
       }
     }
   }
@@ -88,6 +94,12 @@ class Header extends React.Component {
                                 {
                                   this.props.error ? (
                                     <p className="displayErrors">We're sorry, but we had a problem during the login action</p>
+                                  ) : ''
+                                }
+
+                                {
+                                  this.state.loginFail ? (
+                                    <p className="displayErrors">Username or password incorrect.</p>
                                   ) : ''
                                 }
                                 

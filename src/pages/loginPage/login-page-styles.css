@@ -8,6 +8,11 @@
   margin-bottom: 3rem;
 }
 
+.displayErrors {
+  padding-top: 2rem;
+  color: #e74c3c;
+}
+
 @media screen and (max-width: 577px) {
   .login__main-container {
     padding: 10rem 0 0 0;

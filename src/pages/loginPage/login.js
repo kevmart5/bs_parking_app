@@ -8,19 +8,25 @@ class Login extends React.Component {
     super(props);
 
     this.state = {
-      isLogged: false
+      isLogged: false,
+      failLoggin: false
     };
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.login !== prevProps.login) {
       if (this.props.login.name !== undefined) {
-        this.setState({ isLogged: true });
+        this.setState({ 
+          isLogged: true,
+          failLoggin: false
+         });
         localStorage.setItem('user', JSON.stringify(this.props.login))
         localStorage.setItem('isLogged', true);
       } else {
-        this.setState({ isLogged: false });
-        alert(`Fail login`);
+        this.setState({ 
+          isLogged: false,
+          failLoggin: true
+         });
       }
     }
   }
@@ -46,6 +52,17 @@ class Login extends React.Component {
                   <h1 className="text-center login__logo">Login</h1>
                   <LoginForm onSubmit={this.submit} />
                 </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                {
+                  this.state.failLoggin ? (
+                    <div className="text-center">
+                      <p className="displayErrors">Email or password incorrect.</p>
+                    </div>
+                  ) : ''
+                }
               </div>
             </div>
           </div>
