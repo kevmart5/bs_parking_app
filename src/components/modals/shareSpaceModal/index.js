@@ -5,7 +5,8 @@ import { FacebookIcon, EmailIcon } from 'react-share';
 import { FacebookShareCount } from 'react-share';
 import './share-modal-styles.css';
 
-const shareUrl = 'https://www.facebook.com/';
+//const shareUrl = 'https://www.facebook.com/';
+const shareUrl = 'https://en-gb.facebook.com/'
 const emailUrl = 'https://mail.google.com/mail/'
 
 class ShareModal extends React.Component {
