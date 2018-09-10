@@ -41,6 +41,9 @@ class ProfileInfo extends React.Component {
           actionSuccess: true,
           actionError: false
         });
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       } else {
         this.setState({
           actionSuccess: false,
